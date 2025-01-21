@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <div class="userform">
+        <form method="post">
+            <h1>WELCOME!</h1>
+
+            <div class="info">
+                <div class="phoneinput">
+                    <input name="phonenum" type="tel" placeholder="Phone Number" class="phonebox" required>
+                </div>
+                <div class="passwordinput">
+                    <input name="password" type="password" placeholder="Password" class="passwordbox" autocomplete="off" value="" required>
+                </div>
+    
+            </div>
+            
+            <p class="signup"><a href="/signup" class="signuplink">Sign up!</a></p>
+            
+            <div class="submitbutton">
+                <input type="submit" class="submitinput">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signup_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <div class="userform">
+        <form method="post">
+            <h1>WELCOME!</h1>
+            <div class="nameinput">
+                <input name="name" type="text" placeholder="First Name" class="namebox" required>
+            </div>
+            
+            <div class="infoinput">
+                <input name="phonenum" type="tel" placeholder="Phone Number" class="phonebox" required>
+                <input name="age" type="number" placeholder="Age" class="agebox" required>
+            </div>
+
+            <div class="passwordinput">
+                <input name="password" type="password" placeholder="Password" class="passwordbox" autocomplete="off" value="" required>
+            </div>
+
+            <p class="login"><a href="/login" class="loginlink">Sign in!</a></p>
+            
+            <div class="agreement">
+                <p class="agreementtext">
+                    By submitting this form, you agree to the collection, storage, <br>
+                    and processing of the personal data you have provided, in accordance <br>
+                    with our Privacy Policy. <br>
+                    This data will be used solely for account creation, and <b>will not</b> be<br> 
+                    shared with third parties without your consent unless required by law.
+                </p>
+                <input name="agree" type="checkbox" required>
+                <label for="agree" class="agreecompletetext"><i>I agree to the processing of my personal data as described above.</i></label>
+            </div>
+            <div class="submitbutton">
+                <input type="submit" class="submitinput">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

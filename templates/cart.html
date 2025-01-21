@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/cart_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CART</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+        {% if cart %}
+            <div class="items-rect">
+            {% for item in cart %}
+                <div class="cart-item">
+                    <div class="name">
+                        <h3>{{ item[0] }}</h3>
+                    </div>
+                    <div class="ingredients">
+                        <p>{{ item[1] }}</p>
+                    </div>
+                    <div class="price">
+                        <h3>{{ item[2] }}₴</h3>
+                    </div>
+
+                    <div class="order-button">
+                        <form method="POST" action="/order_page">
+                            <input type="hidden" name="name" value="{{ item[0] }}">
+                            <input type="hidden" name="price" value="{{ item[2] }}">
+                            <button class="button">BUY</button>
+                        </form>
+                        <form method="POST" action="/remove_from_cart">
+                            <input type="hidden" name="name" value="{{ item[0] }}">
+                            <input type="hidden" name="ingredients" value="{{ item[1] }}">
+                            <input type="hidden" name="price" value="{{ item[2] }}">
+                            <button class="button">X</button>
+                        </form>
+                    </div>     
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+        <div class="empty-rect">
+            <h2>No items yet.</h2>
+        </div>
+        {% endif %}
+</body>
+</html>

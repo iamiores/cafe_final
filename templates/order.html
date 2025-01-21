@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/order_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER</title>
+</head>
+<body>
+    <div class="rect">
+        <h1>You order is...</h1>
+        <div class="name">
+            <h2>Name:</h2>
+            <h3>{{ name }}</h3>
+        </div>
+        <div class="price">
+            <h2>Price:</h2>
+            <h3>{{ price }}₴</h3>
+        </div>
+        <div class="card-info">
+            <h2>Please, enter your card number:</h2>
+            <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
+            autocomplete="off" maxlength="19" 
+            placeholder="xxxx xxxx xxxx xxxx" required>
+            <input type="password" inputmode="numeric" maxlength="3" autocomplete="off"
+            placeholder="ccv" required>
+        </div>
+
+        <div class="buttons">
+            <div class="cancel">
+                <form action="/menu">
+                    <button class="button">CANCEL</button>
+                </form>
+            </div>
+            <div class="complete">
+                <form method="POST" action="/ordered">
+                    <input type="hidden" name="name" value="{{ name }}">
+                    <input type="hidden" name="price" value="{{ price }}">
+                    <button class="button">COMPLETE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+        <li>☕CoffeeYum</li>
+        <li><a href="/">MAIN</a></li>
+        <li><a href="/menu">MENU</a></li>
+        <li><a href="/fav">FAVORITES</a></li>
+        <li><a href="/yourord">ORDERS</a></li>
+        <li><a href="/cart">CART</a></li>
+        {% if 'user' in session %}
+        <li><a href="/profile">PROFILE</a></li> 
+        {% else %}
+            <li><a href="/login">LOGIN</a></li>
+        {% endif %}
+    </ul>
+</nav>

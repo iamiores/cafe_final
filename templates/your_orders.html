@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/yourord_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUR ORDERS</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    {% if orders %}
+        <div class="orders-rect">
+            <h1>YOUR ORDERS</h1>
+            {% for order in orders %}
+                {% set status = order_statuses[order[0]] %}
+                <div class="order-item">
+                    <h1>{{ order[0] }}</h1>
+                    <h4>{{ order[1] }}</h4>
+                    {% if status %}
+                        <h5>ready</h5>
+                        <h3>{{ order[2] }}₴</h3>
+                        <form method="POST" action="/remove_order">
+                            <input type="hidden" name="id" value="{{ order[0] }}">
+                            <button type="submit" class="button">CONFIRM</button>
+                        </form>
+                    {% else %}
+                        <h5>ready in {{ order[4] }} minutes...</h5>
+                        <h3>{{ order[2] }}₴</h3>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-rect">
+            <h2>You haven't ordered anything yet! <br> You can fix it;)</h2>
+        </div>
+    {% endif %}
+</body>
+</html>

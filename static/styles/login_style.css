@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url('/static/imgs/coffee.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-wrap: wrap;
+
+}
+
+nav{
+    background: linear-gradient(to left, rgb(104, 57, 40), rgb(156, 92, 68));
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul{
+    width:100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li{
+    height:50px;
+}
+
+nav a{
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color:white;
+}
+
+nav a:hover{
+    background-color: rgb(137, 81, 59);
+}
+
+nav li:first-child{
+    display: flex;
+    margin-right: 620px;
+    align-items: center;
+    color:white;
+    flex-wrap: wrap;
+    font-size: 26px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+::selection {
+    background-color: rgba(102, 53, 22, 0.325); 
+}
+
+.userform {
+    flex-wrap: wrap;
+    width: 800px;
+    height: 425px;
+    background: linear-gradient(rgba(177, 102, 64, 0.95), rgba(161, 90, 54, 0.95));
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(102, 46, 22, 0.4);
+
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+h1{
+    text-align: center; 
+    margin-top: 16px;
+    font-size: 40px;
+    color: rgb(65, 32, 15);
+}
+
+.phoneinput, .passwordinput {
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-left: 38%;
+    margin-top: 10px;
+}
+
+.info {
+    margin-top: 6.5%;
+}
+
+.phonebox, .passwordbox {
+    border: 2px solid rgba(136, 72, 40, 0.65);
+    background-color: rgb(125, 71, 45);
+    border-radius: 4px;
+    height: 28px;
+    width: 165px;
+}
+
+.phonebox::placeholder, .passwordbox::placeholder{
+    color:bisque;
+    opacity: 0.65;
+}
+
+.submitbutton{
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-left: 43%;
+    margin-top: 20px;
+}
+
+.submitinput{
+    border: 2px solid rgba(111, 61, 36, 1);
+    background-color: rgba(79, 39, 19, 0.75);
+    width: 80px;
+    height: 25px;
+    border-radius: 3px;
+    color:bisque;
+    font-family: cursive;
+}
+
+.signup, .signuplink {
+    flex-wrap: wrap;
+    color:bisque;
+    font-size: 14px;
+    margin-left: 26%;
+    margin-top: 2.5px;
+}
+

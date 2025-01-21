@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+    
+    <div class="rect">
+        {% for drink in drinks[:3] %}
+        <div class="placeholder_dri1">
+            <h2>{{ drink[0] }}</h2>
+            <p>{{ drink[1] }}</p>
+            <h3>{{ drink[2] }}₴</h3>
+            <div class="centered">
+                <form method="POST" action="/add_tocart">
+                    <input type="hidden" name="name" value="{{ drink[0] }}">
+                    <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                    <input type="hidden" name="price" value="{{ drink[2] }}">
+                    <button class="button">ORDER</button>
+                </form>
+
+                {% if drink[0] in favorites %}
+                    <form method="POST" action="/remove_from_favorites">
+                        <input type="hidden" name="name" value="{{ drink[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                        <input type="hidden" name="price" value="{{ drink[2] }}">
+                        <button type="submit" class="button star">★</button> 
+                    </form>
+                {% else %}
+                    <form method="POST" action="/add_to_favorites">
+                        <input type="hidden" name="name" value="{{ drink[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                        <input type="hidden" name="price" value="{{ drink[2] }}">
+                        <button type="submit" class="button star">☆</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for drink in drinks[-3:] %}
+        <div class="placeholder_dri2">
+            <h2>{{ drink[0] }}</h2>
+            <p>{{ drink[1] }}</p>
+            <h3>{{ drink[2] }}₴</h3>
+            <div class="centered">
+                <form method="POST" action="/add_tocart">
+                    <input type="hidden" name="name" value="{{ drink[0] }}">
+                    <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                    <input type="hidden" name="price" value="{{ drink[2] }}">
+                    <button class="button">ORDER</button>
+                </form>
+                {% if drink[0] in favorites %}
+                    <form method="POST" action="/remove_from_favorites">
+                        <input type="hidden" name="name" value="{{ drink[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                        <input type="hidden" name="price" value="{{ drink[2] }}">
+                        <button type="submit" class="button star">★</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="/add_to_favorites">
+                        <input type="hidden" name="name" value="{{ drink[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ drink[1] }}">
+                        <input type="hidden" name="price" value="{{ drink[2] }}">
+                        <button type="submit" class="button star">☆</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        {% for desert in deserts %}
+        <div class="placeholder_des">
+            <h2>{{ desert[0] }}</h2>
+            <p>{{ desert[1] }}</p>
+            <h3>{{ desert[2] }}₴</h3>
+            <div class="centered">
+                <form method="POST" action="/add_tocart">
+                    <input type="hidden" name="name" value="{{ desert[0] }}">
+                    <input type="hidden" name="ingredients" value="{{ desert[1] }}">
+                    <input type="hidden" name="price" value="{{ desert[2] }}">
+                    <button class="button">ORDER</button>
+                </form>
+                {% if desert[0] in favorites %}
+                    <form method="POST" action="/remove_from_favorites">
+                        <input type="hidden" name="name" value="{{ desert[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ desert[1] }}">
+                        <input type="hidden" name="price" value="{{ desert[2] }}">
+                        <button type="submit" class="button star">★</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="/add_to_favorites">
+                        <input type="hidden" name="name" value="{{ desert[0] }}">
+                        <input type="hidden" name="ingredients" value="{{ desert[1] }}">
+                        <input type="hidden" name="price" value="{{ desert[2] }}">
+                        <button type="submit" class="button star">☆</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

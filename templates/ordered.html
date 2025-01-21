@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/ordered_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUCCESS</title>
+</head>
+<body>
+    <div class="rect">
+        <h1>ORDER SUCCESS!</h1>
+
+        <div class="info">
+            <h2>To get more information, such as order number and when it will be ready, click the start button.</h2>
+        </div>
+
+        <div class="instructions">
+            <h2>⚠️INSTRUCTIONS TO GET YOUR ORDER⚠️</h2>
+            <p>Go to the receptionist at the bar and tell them your order number and phone number. <br> 
+                Receive your order - enjoy!</p>
+        </div>
+
+        <div class="finish">
+            <form method="POST" action="/yourord">
+                <input type="hidden" name="name" value="{{ name }}">
+                <input type="hidden" name="price" value="{{ price }}">
+                <input type="hidden" name="ordernum" value="{{ order_id }}">
+                <input type="hidden" name="timeorder" value="{{ time_order }}">
+                <button class="button">START</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

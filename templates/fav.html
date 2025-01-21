@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/fav_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAVORITES</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+        {% if favorites %}
+            <div class="items-rect">
+            {% for item in favorites %}
+                <div class="favorite-item">
+                    <div class="name">
+                        <h3>{{ item[0] }}</h3>
+                    </div>
+                    <div class="ingredients">
+                        <p>{{ item[1] }}</p>
+                    </div>
+                    <div class="price">
+                        <h3>{{ item[2] }}₴</h3>
+                    </div>
+
+                    <div class="order-button">
+                        <form method="POST" action="/order_page">
+                            <input type="hidden" name="name" value="{{ item[0] }}">
+                            <input type="hidden" name="price" value="{{ item[2] }}">
+                            <button class="button">BUY</button>
+                        </form>
+                        <form method="POST" action="/remove_from_favorites">
+                            <input type="hidden" name="name" value="{{ item[0] }}">
+                            <input type="hidden" name="ingredients" value="{{ item[1] }}">
+                            <input type="hidden" name="price" value="{{ item[2] }}">
+                            <button class="button">★</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+        <div class="empty-rect">
+            <h2>No favorite items yet.</h2>
+        </div>
+        {% endif %}
+</body>
+</html>

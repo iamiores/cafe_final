@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile_style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROFILE</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+
+    <div class="pfp-info-rect">
+        <div class="picture">
+            <img alt="pfp classic" src="https://i.pinimg.com/736x/8b/c5/ce/8bc5ce069cf00083d1a9b150c00aad62.jpg" class="pfp">
+        </div>
+
+        <div class="info">
+            <div class="name-age">
+                <div class="name">
+                    <h3>First Name:</h3>
+                    <p>{{ user['name'] }}</p>
+                </div>
+                <div class="age">
+                    <h3>Age:</h3>
+                    <p>{{ user['age'] }} years old</p>
+                </div>
+            </div>
+    
+            <div class="phonenum">
+                <div class="phone">
+                    <h3>Phone Number:</h3>
+                    <p>{{ user['phone'] }}</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="buttons">
+            <div class="buttonedit">
+                <a href="/editprofile"><button class="button">EDIT PROFILE</button></a>
+            </div>
+            <div class="buttonlogout">
+                <a href="/logout"><button class="button">LOGOUT</button></a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
