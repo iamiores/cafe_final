@@ -65,9 +65,7 @@ def login():
             password_check = cursor.fetchone()
 
             if password_check:
-                session['user'] = {
-                    'id': user_exists[0]
-                }
+                session['user'] = {'id': user_exists[0]}  # if password is correct, saving user in session
                 flash("Success!", "success")
                 return redirect(url_for('profile'))  
             else:
@@ -79,6 +77,7 @@ def login():
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
+    # getting information user wrote
     if request.method == 'POST':
         name = request.form.get("name")
         phonenum = request.form.get("phonenum")
@@ -88,6 +87,7 @@ def signup():
         conn = sqlite3.connect('users.db')
         cursor = conn.cursor()
 
+        # checking if user exists by phonenumber
         query_ch_exs = """
             SELECT * FROM users 
             WHERE PhoneNum = ?; 
@@ -99,22 +99,25 @@ def signup():
             flash("Account already exists!", "danger")
             return redirect(url_for('login'))  
         else:
+            # if the user doesn't exist, we put him in database of users
             query_insr = """
                 INSERT INTO users (Name, PhoneNum, Age, Password)
                 VALUES (?, ?, ?, ?);
             """
             cursor.execute(query_insr, (name, phonenum, age, password))
             conn.commit()
+            # creating a session with this user saving his id. we will identificate and get info about him by id.
             session['user'] = {'id': cursor.lastrowid} 
             
             user_id = cursor.lastrowid
+            # creating unique favorites, cart and orders tables
             fav_table(user_id)  
             cart_table(user_id)
             orders_table(user_id)
 
             conn.close()
             return redirect(url_for('index'))  
-        
+         
     return render_template("signup.html", logged_in='user' in session)
 
 
@@ -127,6 +130,7 @@ def profile():
 
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
+    # getting user's info by his id
     query_user_info = """
         SELECT * FROM users 
         WHERE Id = ?;
@@ -140,6 +144,7 @@ def profile():
 
     conn.commit()
     conn.close()
+    # saving his info in a dict to display (name, phone number and age)
     user_info = {
         'name': user_data[1],
         'phone': user_data[2],
@@ -204,7 +209,7 @@ def add_to_favorites():
     favorites = [row[0] for row in cursor.fetchall()]  # getting name to check if the item is in favorites
     conn.close()
     
-    return render_template('menu.html', drinks=get_drinks(), deserts=get_desserts())
+    return render_template('menu.html', drinks=get_drinks(), deserts=get_desserts(), favorites=favorites)
 
 
 @app.route("/fav", methods=["GET", "POST"])
@@ -399,6 +404,7 @@ def your_orders():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
 
+    # getting users unique orders
     query = f"""
     SELECT * FROM orders_{user_id};
     """
@@ -411,9 +417,9 @@ def your_orders():
 
     for order in orders:
         order_id = order[0]
-        order_time = order[4] 
+        order_time = order[4]  # the time when order was made
         
-        current_time = int(time.time())
+        current_time = int(time.time())  # current time
         time_elapsed = current_time - order[5]
 
         if time_elapsed >= order_time * 60:  # checking if the time set for item to be done had elapsed
